@@ -1,0 +1,672 @@
+<!-- MALTOSE -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CGVR - Lesson2</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+  
+<!--     <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script> -->
+<script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-troika-text/dist/aframe-troika-text.min.js"></script>
+    
+<!--     <script src="/material.js"></script> -->
+    <script src="/environment.js"></script>
+    
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
+<!--     <script type="text/javascript">
+      AFRAME.ASSETS_PATH = "./assets"; -->
+   
+    
+  
+    
+    
+  </head>
+  <body>
+    <a-scene stage-env renderer="antialias: true" cursor="rayOrigin: mouse" loading-screen="dotsColor: #14FFEC; backgroundColor: #323232">
+<!--       <a-entity environment="skyType: gradient; skyColor: #000000; horizonColor: #ffffff;
+                             groundTexture: none; ground: spikes; groundColor: #ffffff; groundColor2: #ffffff;
+                             dressing: apparatus; dressingAmount: 10; dressingColor: #000000"></a-entity> -->
+<!--     <a-entity environment="skyType: atmosphere; skyColor: #161c37; lighting: point; lightPosition: -1 6.2 5; groundTexture: squares;"></a-entity> -->
+      
+    <!--<a-scene background="color: #333333" renderer="antialias: true" cursor="rayOrigin: mouse"> -->
+    
+      <a-assets>
+        <img id="rotate-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FRight.png?v=1586132629118"  crossorigin="anonymous">
+        <img id="rotate-icon-l" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLeft.png?v=1586132624259"  crossorigin="anonymous">
+        <img id="pause-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FPause.png?v=1586132633986"  crossorigin="anonymous">
+        
+        <img id="selected-rotate-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FSelected%20right.png?v=1587189570081"  crossorigin="anonymous">
+        <img id="selected-rotate-icon-l" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FSelected%20left.png?v=1587189558333"  crossorigin="anonymous">
+        <img id="selected-pause-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FSelected%20pause.png?v=1587189564299"  crossorigin="anonymous">
+        
+        
+        <img id="textframe" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Ftooltip.png?v=1585515163021"  crossorigin="anonymous">
+        
+        
+        
+        
+        <a-asset-item id="jmol-obj" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fmol.glb?v=1584026179786"></a-asset-item>
+        
+        
+        
+        
+        
+        
+        <a-asset-item id="l1" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fnew1.glb?v=1584296164543"></a-asset-item>
+        <a-asset-item id="l2" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fmaltose.glb?v=1584661675847"></a-asset-item>
+        <a-asset-item id="l3" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FGFP.glb?v=1584662698887"></a-asset-item>
+        <a-asset-item id="l4" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FMALTOSE%20BINDING%20PROTEIN%20SENSOR%20.glb?v=1584663048023"></a-asset-item>
+        <img id="label1" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLesson1.png?v=1587758710672"  crossorigin="anonymous">
+        <img id="label2" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLesson2.png?v=1587758713054"  crossorigin="anonymous">
+        <img id="label3" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLesson3.png?v=1587758717080"  crossorigin="anonymous">
+        <img id="label4" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLesson4.png?v=1587758721592"  crossorigin="anonymous">
+        <img id="info-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Finfo.png?v=1588193825592"  crossorigin="anonymous">
+        <img id="warning-popup" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FFinish%20Quiz.png?v=1588640135277"  crossorigin="anonymous">
+        <img id="close" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fclose.png?v=1587358509638"  crossorigin="anonymous">
+        
+        
+        
+        
+        <img id="popup-content" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FClickInfo.png?v=1587843138821"  crossorigin="anonymous">
+        
+        <img id="look" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Flook.png?v=1589248700392"  crossorigin="anonymous">
+        <img id="look2" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Flook2.png?v=1589249486049"  crossorigin="anonymous">
+<!--      <a-asset-item id="jmol-obj" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2F1cbs_a.obj?v=1583363035826"></a-asset-item> -->
+      </a-assets>
+<!-- <a-entity oculus-go-controls></a-entity>
+      <a-entity tracked-controls="controller: 0; idPrefix: OpenVR"></a-entity>
+ -->
+      <!-- gltf-model="#jmol-obj" -1.025 -2.8 -3.566-->
+      
+      
+      
+      
+      
+      
+      
+      
+      <a-entity id="mole"
+                geometry="primitive:box; width:2.4; height:3; depth:2.4;"
+            material="color:black; opacity: 0;"
+            rotation="0 0 0"                                
+            position="-5.7 3 -8.07"
+            >
+            
+      <a-entity id="molecule"
+      
+                gltf-model= "#jmol-obj" scale="0.08 0.08 0.08" position="0.995 0 0"
+      ></a-entity>
+        
+      </a-entity>
+      <a-image id="atom" src="#info-icon" color="None" position="0.8 4 3.068" scale="0.6 0.6 1"></a-image>
+      
+      
+      
+        <!--animation="property: rotation; to: 0 360 0; loop: true; autoplay:false; dur: 10000; easing:linear; startEvents: rotateme;" -->
+            
+      
+<!-- <a-image id="lookaround" src="#look" position="5 3.6 -0.6" rotation="0 -50 -5" height="0.5" width="1"></a-image> -->
+<!--       <a-image id="lookaround2" src="#look2" position="-5 3.6 -0.7" rotation="0 50 5" height="0.5" width="1"></a-image> -->
+
+        <!-- BASIC INTERACTIONS ON MOUSEENTER, MOUSELEAVE, MOUSEDOWN, MOUSEUP -->
+      
+        <a-entity id="button-container" position="-5 0.7 -4.4">
+        <a-entity 
+               id="right-rotate-btn"   
+               basic-interactions
+               material="color:#000000; opacity:0;" 
+               geometry="primitive:box; depth: 0.1; height: 0.7; width: 0.7" 
+               position="0 0 0"
+        >
+          <a-image id="img-right" position="0 0 0.1" src="#rotate-icon-l" color="None" width="0.87" height="0.87"></a-image>
+          <a-image id="sel-img-right" position="0 0 0.1" src="#selected-rotate-icon-l" color="None" width="0.87" height="0.87" scale="0 0 0"></a-image>
+      </a-entity>
+      <a-entity 
+               id="left-rotate-btn"   
+               basic-interactions
+               material="color:#14ffec; opacity:0;" 
+               geometry="primitive:box; depth: 0.1; height: 0.7; width: 0.7" 
+               position="2 0 0"
+        >
+        <a-image id="img-left" position="0 0 0.1" src="#rotate-icon" color="None" width="0.87" height="0.87"></a-image>
+          <a-image id="sel-img-left" position="0 0 0.1" src="#selected-rotate-icon" color="None" width="0.87" height="0.87" scale="0 0 0"></a-image>
+      </a-entity>
+        <a-entity 
+               id="stop-rotate-btn"   
+               basic-interactions
+               material="color:#14ffec; opacity:0;" 
+               geometry="primitive:box; depth: 0.1; height: 0.7; width: 0.7" 
+               position="1 0 0"
+        >
+          <a-image id="img-pause" position="0 0 0.1" src="#pause-icon" color="None" width="0.87" height="0.87"></a-image>
+          <a-image id="sel-img-pause" position="0 0 0.1" src="#selected-pause-icon" color="None" width="0.87" height="0.87" scale="0 0 0"></a-image>
+      </a-entity>
+        </a-entity>
+      
+      <a-entity id="popup"
+          geometry="primitive:plane; height:2; width:1.8"
+          material="color:white; opacity:0" scale="0 0 0"
+          position="0 2 0">
+        <a-image id="pop" src="#popup-content" color="None" height="1.5" width="2.3"></a-image>
+        <a-image id="close-popup" position="1 0.604 0.01" scale="0.5 0.5 0.5" src="#close" color="None" width="0.2" height="0.2">
+        </a-image>
+      </a-entity>
+      
+      
+<!-- Molecule cube 1 -->
+      <a-entity id="m1"
+            geometry="primitive:box; width:2.4; height:3; depth:2.4;"
+            material="color:#323232;; transparent:true; opacity:0.3"
+            rotation="0 -28 0"                                
+            position="4.0 2.4 -2.8"
+            >
+            
+        <!-- Question 1 -->
+        <a-entity id="m1-q1"
+            geometry="primitive:box; width:2; height:3; depth:0.1;"
+            material="color:#0D7377; transparent:true; opacity:0.6"
+            rotation="0 0 0"                
+            position="0 0 1.2"
+            >
+            <!-- text background -->
+            <a-entity 
+                  geometry="primitive:plane; height:0.8; width:1.8"
+                  material="color:white" 
+                  position="0 1 0.1" 
+                  >
+            </a-entity>              
+            <!-- text copy -->
+            <a-entity 
+                  geometry="primitive:plane; width:1.8"
+                  material="transparent:true; opacity: 0; alphaTest: 1" 
+                  scale="1.1 1.1 1.1"
+                  text="value: Maltose as a dissacharide consists of ? ; wrapCount:25; align:center; width: 1.6; color: black; lineHeight:60; shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/opensanscondensed/OpenSansCondensed-Bold.json;"
+                  position="0 0.875 0.1" 
+                  >
+            </a-entity>
+            <!-- q1 ui -->
+            <a-gui-flex-container
+                  flex-direction="column" 
+                  justify-content="center"
+                  align-items="normal" 
+                  component-padding="0.1"
+                  opacity="1" 
+                  width="1.8" 
+                  height="2"
+                  position="0 -0.4 0.1" 
+                  rotation="0 0 0" 
+                  panel-color="#000000"
+                  >
+                  <a-gui-radio
+                      id="m1-q1-a1"
+                      width="1.8" height="0.5"
+                      onclick="genericListener"
+                      active-color="#14ffec"
+                      value="Glucose and Fructose" 
+                      ative="false"
+                      checked="false"
+                      font-size="0.12" margin="0 0 0 0">
+                  </a-gui-radio>
+                  <a-gui-radio
+                      id="m1-q1-a2" 
+                      width="1.8" height="0.5"
+                      onclick="genericListener"
+                      active-color="#14ffec"
+                      value="Glucose and Galactose" 
+                      ative="false"
+                      checked="false"
+                      font-size="0.12" margin="0 0 0 0">
+                  </a-gui-radio>
+                  <a-gui-radio
+                      id="m1-q1-a3"                      
+                      width="1.8" height="0.5"
+                      onclick="genericListener"
+                      active-color="#14ffec"
+                      value="Glucose and Glucose" 
+                      ative="false"
+                      checked="false"
+                      font-size="0.12" margin="0 0 0 0">
+                  </a-gui-radio>
+                  <a-gui-button 
+                      id="m1-q1-next"                      
+                      width="1.8" height="0.5"
+                      onclick="nextListener" key-code="32"
+                      value="Next"
+                      font-size="0.175" margin="0 0 0 0"
+                      scale="0.01 0.01 0.01"
+                                active-color="#0d7377">
+                  </a-gui-button>        
+            </a-gui-flex-container>                  
+        </a-entity>
+        <!-- Question 1 end -->
+
+        <!-- Question 2 -->
+        <a-entity id="m1-q2"
+            geometry="primitive:box; width:2; height:3; depth:0.1;"
+            material="color:#0D7377; transparent:true; opacity:0.6"
+            rotation="0 90 0"
+            position="1.2 0 0"
+            >
+            <!-- text background -->
+            <a-entity 
+                  geometry="primitive:plane; height:0.8; width:1.8"
+                  material="color:white" 
+                  position="0 1 0.1" 
+                  >
+            </a-entity>              
+            <!-- text copy -->
+            <a-entity 
+                  geometry="primitive:plane; width:1.8"
+                  material="transparent:true; opacity: 0; alphaTest: 1" 
+                  text="value: In maltose the linkage is?; wrapCount:20; align:center; width: 1.6; color: black; lineHeight:60; shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/opensanscondensed/OpenSansCondensed-Bold.json;"
+                  position="0 0.875 0.1" 
+                  >
+            </a-entity>
+            <!-- q2 ui -->
+            <a-gui-flex-container
+                  flex-direction="column" 
+                  justify-content="center"
+                  align-items="normal" 
+                  component-padding="0.1"
+                  opacity="1" 
+                  width="1.8" 
+                  height="2"
+                  position="0 -0.4 0.1" 
+                  rotation="0 0 0" 
+                  panel-color="#000000"
+                  >
+                  <a-gui-radio
+                      id="m1-q2-a1"
+                      width="1.8" height="0.5"
+                      onclick="genericListener"
+                      active-color="#14ffec"
+                      value="alpha-1-4" 
+                      ative="false"
+                      checked="false"
+                      font-size="0.12" margin="0 0 0 0">
+                  </a-gui-radio>
+                  <a-gui-radio
+                      id="m1-q2-a2" 
+                      width="1.8" height="0.5"
+                      onclick="genericListener"
+                      active-color="#14ffec"
+                      value="alpha-1-2" 
+                      ative="false"
+                      checked="false"
+                      font-size="0.12" margin="0 0 0 0">
+                  </a-gui-radio>
+                  <a-gui-radio
+                      id="m1-q2-a3"                      
+                      width="1.8" height="0.5"
+                      onclick="genericListener"
+                      active-color="#14ffec"
+                      value="beta-1-4" 
+                      ative="false"
+                      checked="false"
+                      font-size="0.12" margin="0 0 0 0">
+                  </a-gui-radio>
+                  <a-gui-button 
+                      id="m1-q2-next"                      
+                      width="1.8" height="0.5"
+                      onclick="nextListener" key-code="32"
+                      value="Next"
+                      font-size="0.175" margin="0 0 0 0"
+                      scale="0.01 0.01 0.01"
+                                active-color="#0d7377">
+                  </a-gui-button>        
+            </a-gui-flex-container>                  
+        </a-entity>
+        <!-- Question 2 end -->
+        
+        <!-- Question 3 -->
+        <a-entity id="m1-q3"
+            geometry="primitive:box; width:2; height:3; depth:0.1;"
+            material="color:#0D7377; transparent:true; opacity:0.6"
+            rotation="0 180 0"
+            position="0 0 -1.2"
+            >
+            <!-- text background -->
+            <a-entity 
+                  geometry="primitive:plane; height:0.8; width:1.8"
+                  material="color:white" 
+                  position="0 1 0.1" 
+                  >
+            </a-entity>              
+            <!-- text copy -->
+            <a-entity 
+                  geometry="primitive:plane; width:1.8"
+                  material="transparent:true; opacity: 0; alphaTest: 1" 
+                  text="value: Sucrose, lactose, and maltose are ; wrapCount:20; align:center; width: 1.6; color: black; lineHeight:60; shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/opensanscondensed/OpenSansCondensed-Bold.json;"
+                  position="0 0.875 0.1" 
+                  >
+            </a-entity>
+            <!-- q3 ui -->
+            <a-gui-flex-container
+                  flex-direction="column" 
+                  justify-content="center"
+                  align-items="normal" 
+                  component-padding="0.1"
+                  opacity="1" 
+                  width="1.8" 
+                  height="2"
+                  position="0 -0.4 0.1" 
+                  rotation="0 0 0" 
+                  panel-color="#000000"
+                  >
+                  <a-gui-radio
+                      id="m1-q3-a1"
+                      width="1.8" height="0.5"
+                      onclick="genericListener"
+                      active-color="#14ffec"
+                      value="monosaccharides" 
+                      ative="false"
+                      checked="false"
+                      font-size="0.12" margin="0 0 0 0">
+                  </a-gui-radio>
+                  <a-gui-radio
+                      id="m1-q3-a2" 
+                      width="1.8" height="0.5"
+                      onclick="genericListener"
+                      active-color="#14ffec"
+                      value="oligosaccharides" 
+                      ative="false"
+                      checked="false"
+                      font-size="0.12" margin="0 0 0 0">
+                  </a-gui-radio>
+                  <a-gui-radio
+                      id="m1-q3-a3"                      
+                      width="1.8" height="0.5"
+                      onclick="genericListener"
+                      active-color="#14ffec"
+                      value="polysaccharides" 
+                      ative="false"
+                      checked="false"
+                      font-size="0.12" margin="0 0 0 0">
+                  </a-gui-radio>
+                  <a-gui-button 
+                      id="m1-q3-next"                      
+                      width="1.8" height="0.5"
+                      onclick="nextListener" key-code="32"
+                      value="Next"
+                      font-size="0.175" margin="0 0 0 0"
+                      scale="0.01 0.01 0.01"
+                                active-color="#0d7377">
+                  </a-gui-button>        
+            </a-gui-flex-container>                  
+        </a-entity>
+        <!-- Question 3 end -->
+
+        <!-- Question 4 -->
+        <a-entity id="m1-q4"
+            geometry="primitive:box; width:2; height:3; depth:0.1;"
+            material="color:#0D7377; transparent:true; opacity:0.6"
+            rotation="0 270 0"
+            position="-1.2 0 0"
+            >
+            <!-- text background -->
+            <a-entity 
+                  geometry="primitive:plane; height:1.6; width:1.8"
+                  material="color:white" 
+                  position="0 0.6 0.1" 
+                  >
+            </a-entity>              
+            <!-- text copy -->
+            <a-entity 
+                  geometry="primitive:plane; width:1.8"
+                  material="transparent:true; opacity: 0; alphaTest: 1;" 
+                  text="value: Congrats you completed this quiz!; wrapCount:15; align:center; width: 1.6; color: black; lineHeight:50; shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/opensanscondensed/OpenSansCondensed-Bold.json;"
+                  position="0 0.675 0.1" 
+                  >
+            </a-entity>
+          
+            <a-entity id="m1-count"
+                  geometry="primitive:plane; width:1.8"
+                  material="transparent:true; opacity: 0; alphaTest: 1" 
+                  text="value: # of 3 correct answers; wrapCount:20; align:center; width: 1.6; color: black; lineHeight:60; shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/opensanscondensed/OpenSansCondensed-Bold.json;"
+                  position="0 0 0.1" 
+                  >
+            </a-entity>
+          
+            <!-- q4 ui -->
+            <a-gui-flex-container
+                  flex-direction="column" 
+                  justify-content="center"
+                  align-items="normal" 
+                  component-padding="0.1"
+                  opacity="1" 
+                  width="1.8" 
+                  height="1.2"
+                  position="0 -0.8 0.1" 
+                  rotation="0 0 0" 
+                  panel-color="#000000"
+                  >
+                  <a-gui-button 
+                      id="m1-next-quiz"                      
+                      width="1.6" height="0.5"
+                      onclick="goToM2" key-code="32"
+                      value="Take the next quiz"
+                      font-size="0.175" margin="0 0 0 0"
+                      scale="0.01 0.01 0.01"
+                                active-color="#0d7377">
+                  </a-gui-button>        
+            </a-gui-flex-container>                  
+        </a-entity>
+        <!-- Question 4 end -->
+
+      </a-entity>
+<!-- Molecule cube 1 end-->
+
+<!-- Molecule cube 2 -->
+      <a-entity id="m2"
+            geometry="primitive:box; width:2.4; height:3; depth:2.4;"
+            material="color:white; transparent:true; opacity:0.3"
+            rotation="0 0 0"
+            scale="0.001 0.001 0.001"
+            position="0 2.4 -2.8"
+            >
+      <!--  content here  -->
+      </a-entity>
+<!-- Molecule cube 2 end-->
+      
+<!-- Molecule cube 3 -->
+      <a-entity id="m3"
+            geometry="primitive:box; width:2.4; height:3; depth:2.4;"
+            material="color:white; transparent:true; opacity:0.3"
+            rotation="0 0 0"
+            scale="0.001 0.001 0.001"
+            position="0 2.4 -2.8"
+            >
+      <!--  content here  -->
+      </a-entity>
+<!-- Molecule cube 3 end-->
+      
+<!-- Molecule cube 4 -->
+      <a-entity id="m4"
+            geometry="primitive:box; width:2.4; height:3; depth:2.4;"
+            material="color:white; transparent:true; opacity:0.3"
+            rotation="0 0 0"
+            scale="0.001 0.001 0.001"
+            position="0 2.4 -2.8"
+            >
+      <!--  content here  -->
+      </a-entity>
+<!-- Molecule cube 4 end-->
+      
+<!-- Molecule cube 5 -->
+      <a-entity id="m5"
+            geometry="primitive:box; width:2.4; height:3; depth:2.4;"
+            material="color:white; transparent:true; opacity:0.3"
+            rotation="0 0 0"
+            scale="0.001 0.001 0.001"
+            position="0 2.4 -2.8"
+            >
+      <!--  content here  -->
+      </a-entity>
+<!-- Molecule cube 5 end-->
+      
+       <a-entity id="progressbar"
+                position="3.25 0.5 -1.375"
+                rotation="0 -28 0"                                
+                slice9="width: 2.25; height: 0.75; left: 20; right: 43; top: 20; bottom: 43; src: #textframe" >
+        <a-entity 
+                  position="0 0.2 0.1"
+                  troika-text="value: Quiz Progress;
+                               fontSize:0.2;
+                               "
+                  ></a-entity>
+        
+        <a-plane id="black-bar" position="0 -0.15 0.05" height="0.1" width="1.8" color="grey"></a-plane>
+        
+        <a-plane id="blue-bar" position="-0.8 -0.15 0.1" height="0.1" width="0.001" color="#14ffec"></a-plane>
+
+        <a-entity id="page1ind" position="-0.8 -0.125 0">
+                  <a-ring id="page1ind_ring"
+                          position="0 0 0.2"
+                          radius-outer="0.125"  
+                          radius-inner="0.075"  
+                          color="white"
+                          ></a-ring>
+                  <a-circle id="page1ind_circle"
+                          position="0 0 0.15"
+                          radius="0.125" 
+                          color="#14ffec"
+                          ></a-circle>        
+        </a-entity>
+        
+        
+        <a-entity id="page2ind" position="-0.265 -0.125 0">
+                  <a-ring id="page2ind_ring"
+                          position="0 0 0.2"
+                          radius-outer="0.125"  
+                          radius-inner="0.075"  
+                          color="white"
+                          ></a-ring>
+                  <a-circle id="page2ind_circle"
+                          position="0 0 0.15"
+                          radius="0.125" 
+                          color="black"
+                          ></a-circle>        
+        </a-entity>
+        
+
+        <a-entity id="page3ind" position="0.265 -0.125 0">
+                  <a-ring id="page3ind_ring"
+                          position="0 0 0.2"
+                          radius-outer="0.125"  
+                          radius-inner="0.075"  
+                          color="white"
+                          ></a-ring>
+                  <a-circle id="page3ind_circle"
+                          position="0 0 0.15"
+                          radius="0.125" 
+                          color="black"
+                          ></a-circle>        
+        </a-entity>
+        
+        <a-entity id="page4ind"
+                   position="0.8 -0.125 0"
+                  >
+                  <a-ring id="page4ind_ring"
+                          position="0 0 0.2"
+                          radius-outer="0.125"  
+                          radius-inner="0.075"  
+                          color="white"
+                          ></a-ring>
+                  <a-circle id="page4ind_circle"
+                          position="0 0 0.15"
+                          radius="0.125" 
+                          color="black"
+                          ></a-circle>        
+        </a-entity>      
+      </a-entity>
+      
+      
+    
+      
+      
+      <a-entity id="mainMenu" position="0 0.8 5" rotation="0 180 0">
+        <a-entity id="MiddleRow" position= "0 1.2 0">
+<!--           <a-entity position="-1.5 0 0" id="lesson1">
+            <a-entity position="-0.01 0.2 0" geometry="primitive:box; width:0.8; height:0.8; depth:0.8;"
+                material="opacity: 0;"
+                animation="property: rotation; from:0 0 0; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+              
+              <a-entity id="molecule1" gltf-model= "#l2" scale="0.09 0.09 0.09" position="0.032 -0.01 0.006">
+              </a-entity>
+            </a-entity>
+            <a-image id="lab1" src="#label1" position="0 -0.4 0" height="0.1" width="0.5"></a-image>
+          </a-entity> -->
+<!--           <a-entity position="0 0 0" id="lesson2">
+            <a-entity position="-0.01 0.2 0" geometry="primitive:box; width:0.8; height:0.3; depth:0.8;"
+                material="opacity: 0;"
+                animation="property: rotation; from:0 0 0; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+              <a-entity id="molecule2" gltf-model= "#l2" scale="0.09 0.09 0.09" position="0.032 -0.01 0.006">
+              </a-entity>
+            </a-entity>
+            <a-image id="lab2" src="#label2" position="0 -0.4 0" height="0.1" width="0.5"></a-image>
+          </a-entity> -->
+<!--           <a-entity id="lesson3" position="0 0 0">
+            <a-entity position="-.01 0.2 0" geometry="primitive:box; width:0.8; height:0.3; depth:0.8;"
+                material="opacity: 0;"
+                animation="property: rotation; from:0 0 0; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+              <a-entity id="molecule3" gltf-model= "#l3" scale="0.022 0.022 0.022" position="-0.115 -0.591 -0.063">
+              </a-entity>
+            </a-entity>
+            <a-image id="lab3" src="#label3" position="0 -0.4 0" height="0.1" width="0.5"></a-image>
+          </a-entity>
+          
+          <a-entity id="lesson4" position="1.5 0 0">
+          <a-entity position="-.01 0.2 0" geometry="primitive:box; width:0.8; height:0.3; depth:0.8;"
+              material="opacity: 0;"
+              animation="property: rotation; from:0 0 0; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+            <a-entity id="molecule5" gltf-model= "#l4" scale="0.0121 0.0121 0.0121" position="0.065 0.202 0.061">
+            </a-entity>
+          </a-entity>
+            <a-image id="lab4" src="#label4" position="0 -0.4 0" height="0.1" width="0.5"></a-image>
+          </a-entity> -->
+
+          
+
+        </a-entity>
+        <a-entity id="warning"
+          geometry="primitive:plane; height:.7; width:2"
+          material="color:white; opacity:0" scale="0 0 0"
+          position="0 1 .6">
+          <a-image src="#warning-popup" color="None" height=".7" width="2"></a-image>
+          <a-image id="close-warning" position="0.85 0.2 0.01" scale="0.5 0.5 0.5" src="#close" color="None" width="0.2" height="0.2">
+          </a-image>
+        </a-entity>
+      </a-entity>
+
+      
+      
+    
+      
+      
+      
+<!--       <a-plane width="10" height="10" rotation="-90 0 0" color="#f0f0f0"></a-plane>
+     <a-sky color="#ddd"></a-sky>  -->
+      
+<!--       <a-entity camera look-controls orbit-controls="target: 0 0 0; minDistance: 3; maxDistance: 180; initialPosition: 0 1 2"></a-entity> -->
+      
+      <a-entity id="rig" position="0 1 2.5">
+          <a-entity id="camera" camera wasd-controls="acceleration:200"  look-controls position="0 0 0"></a-entity>
+          <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+      
+    </a-scene>
+    <script>
+      window.testToggleAction = function (a) {
+        console.log("clicked GUI param 1 is:", a);
+        console.log('Target and text is: ', a.target, a.target.value);
+        a.preventDefault();
+        a.stopPropagation();
+    }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  <title>CGVR EL</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    
+    <!-- Orbit Controls -->
+	  <script src="https://unpkg.com/aframe-orbit-controls@1.0.0/dist/aframe-orbit-controls.min.js"></script>
+    
+    <!-- NGL for Aframe proof of concept -->
+<!--     <script src="https://cdn.rawgit.com/KJStrand/ngl/AFRAME-NGL/dist/Aframe_component.js"></script>
+    <script src="https://cdn.rawgit.com/KJStrand/ngl/AFRAME-NGL/dist/ngl.dev.js"></script> -->
+<!--      <script src="/environment.js"></script> -->
+    <!--     <script src="https://cdn.glitch.com/24110e08-5867-4309-a041-427620ed9d5f%2Fngl.dev.js?1533331821988"></script> -->
+    <!-- 	  <script src="https://cdn.glitch.com/24110e08-5867-4309-a041-427620ed9d5f%2FAframe_component.js?1533331818804"></script> -->
+    
+    
+    <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+<!--     s<script src="https://unpkg.com/aframe-troika-text/dist/aframe-troika-text.min.js"></script> -->
+    
+    <script src="/environment.js"></script>
+    
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
+
+  </head>
+	<body>
+    
+    <a-scene stage-env renderer="antialias: true" cursor="rayOrigin: mouse" loading-screen="dotsColor: #14FFEC; backgroundColor: #323232; enabled: true;">
+	    <a-assets>
+        
+  
+<!--         Linear Bond -->
+        <a-asset-item id="l1" src="https://cdn.glitch.global/047b789c-0adf-43c1-9591-c52db8f5e45e/LinearBond.glb?v=1642075584665"></a-asset-item> 
+<!--         Molecule -->
+        <a-asset-item id="l2" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fmol.glb?v=1584026179786"></a-asset-item>
+        
+<!--         Animal Cell         -->
+        <a-asset-item id="l3" src="https://cdn.glitch.global/047b789c-0adf-43c1-9591-c52db8f5e45e/Animal%20cell.glb?v=1642129067864"></a-asset-item>
+        
+<!--         Stadium -->
+        <a-asset-item id="l4" src="https://cdn.glitch.global/047b789c-0adf-43c1-9591-c52db8f5e45e/Sports%20Stadium.glb?v=1642127765257"></a-asset-item>
+        
+        
+        
+<!--         <a-asset-item id="l1" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fmol.glb?v=1584026179786"></a-asset-item>
+        <a-asset-item id="l2" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fmaltose.glb?v=1584661675847"></a-asset-item>
+        <a-asset-item id="l3" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FGFP.glb?v=1584662698887"></a-asset-item>
+        <a-asset-item id="l4" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FMALTOSE%20BINDING%20PROTEIN%20SENSOR%20.glb?v=1584663048023"></a-asset-item>
+         -->
+        <img id="label1" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLesson1.png?v=1587758710672"  crossorigin="anonymous">
+        <img id="label2" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLesson2.png?v=1587758713054"  crossorigin="anonymous">
+        <img id="label3" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLesson3.png?v=1587758717080"  crossorigin="anonymous">
+        <img id="label4" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLesson4.png?v=1587758721592"  crossorigin="anonymous">
+        
+
+<!--         <img crossorigin="anonymous" id="Amino_info" src="https://cdn.glitch.com/4df57104-7742-4207-9f26-0bbf4325d928%2F20-Common-Amino-Acids-v3.png?1533324002423"> -->
+		  </a-assets>
+<!--       <a-entity oculus-go-controls></a-entity>
+      <a-entity tracked-controls="controller: 0; idPrefix: OpenVR"></a-entity>
+ -->
+      <a-entity id="mainMenu" position="0 0 0">
+        
+        
+        
+        
+        <a-entity id="TopRow" position= "0 2.5 0">
+          <a-entity position="1 0 0">
+
+          </a-entity>
+
+          <a-entity position="0.733 0 0" id="lesson2">
+            
+            <a-entity position="0 0.342 0" 
+                      geometry="primitive:box; width:0.8; height:0.3; depth:0.8;"
+                material="opacity: 0;"
+                animation="property: rotation; from:0 0 0; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+              
+              <a-entity id="molecule2" 
+                        gltf-model= "#l2" 
+                        scale="0.013 0.013 0.013" position="-0.044 -0.040 -0.467">
+              </a-entity>
+            </a-entity>
+            
+            <a-image id="lab2" src="#label2" position="0 0 0" height="0.1" width="0.5"></a-image>
+  
+          </a-entity>
+          
+          
+          
+          <a-entity position="-1 0.4 0" id="lesson1">
+            
+            <a-entity position="-0.01 0.2 0"
+                      geometry="primitive:box; width:0.8; height:0.8; depth:0.8;"
+                material="opacity: 0;"
+                animation="property: rotation; from:0 0 0; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+              
+              <a-entity id="molecule1"
+                        gltf-model= "#l1"
+                        scale="0.0101 0.0101 0.0101"
+                        position="-0.034 -0.080 -0.021">
+              </a-entity>
+              
+            </a-entity>
+            
+            <a-image id="lab1" src="#label1" position="0 -0.4 0" height="0.1" width="0.5"></a-image>
+
+          </a-entity>
+        </a-entity>
+        
+        
+        
+        
+        <a-entity id="MiddleRow" position= "0 1.7 0">
+  <!--         <a-entity position="1 0 0" geometry="primitive:box; width:0.5; height:0.5; depth:0.5;"
+              material="color:black; opacity: .2;"
+              animation="property: rotation; from:0 0 0; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+            <a-entity id="molecule4" gltf-model= "#l1" scale="0.01 0.01 0.01" position="-0.11 -0.253 -0.283">
+            </a-entity>
+          </a-entity> -->
+          <a-entity position="-1 0 0" geometry="primitive:box; width:0.5; height:0.5; depth:0.8;"
+                material="opacity: 0;" id="lesson3"
+                animation="property: rotation; from:0 0 0; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+              <a-entity id="molecule3" gltf-model= "#l3" scale="4 4  4" position="-0.115 -0.191 -0.063">
+              </a-entity>
+            </a-entity>
+
+          <a-entity position="0.733 0 0" geometry="primitive:box; width:0.8; height:0.3; depth:0.8;"
+              material="opacity: 0;" id="lesson4"
+              animation="property: rotation; from:0 0 0; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+            <a-entity id="molecule5" gltf-model= "#l4" scale="0.0221 0.0221 0.0221" position="0.065 0.02 0.061">
+            </a-entity>
+          </a-entity>
+
+          <a-image id="lab3" src="#label3" position="-1 -0.5 0" height="0.1" width="0.5"></a-image>
+            <a-image id="lab4" src="#label4" position="0.8 -0.5 0" height="0.1" width="0.5"></a-image>
+
+        </a-entity>
+      </a-entity>
+      
+      
+      <a-entity id="rig" position="0 2.1 2.5">
+          <a-entity id="camera" camera look-controls wasd-controls position="0 0 0"></a-entity>
+          <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+      
+	  </a-scene>
+	
+	</body>
+</html>

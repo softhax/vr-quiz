@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CGVR Self Study</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+
+    <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-troika-text/dist/aframe-troika-text.min.js"></script>
+    <script src="/environment.js"></script>
+    
+    <script>
+      AFRAME.registerComponent('play', {
+        init: function () {
+          var myEl = document.querySelector('#soundbox');
+          this.el.addEventListener('click', function() {
+            myEl.components.sound.playSound();
+            // From the Ashman: Call this function whenever you play to highlight the button or with no params to unhighlight the button
+            changeIcons('play1');
+          });
+        }
+      });
+      
+      AFRAME.registerComponent('stop', {
+        init: function () {
+          var myEl = document.querySelector('#soundbox');
+          this.el.addEventListener('click', function() {
+            myEl.components.sound.stopSound();
+            changeIcons('stop1');
+          });
+        }
+      });
+      
+      AFRAME.registerComponent('pause', {
+        init: function () {
+          var myEl = document.querySelector('#soundbox');
+          this.el.addEventListener('click', function() {
+            myEl.components.sound.pauseSound();
+            changeIcons('pause1');
+          });
+        }
+      });
+      
+      AFRAME.registerComponent('autoplay', {
+        init: function () {
+          var myEl = document.querySelector('#soundbox');
+          this.el.addEventListener('load', function() {
+            myEl.components.sound.playSound();
+          //  changeIcons('play1');
+          });
+        }
+      });
+      
+      
+      
+      function changeIcons(type) {
+    let arr = ['pause1', 'play1', 'stop1'];
+    for (let i = 0 ; i < arr.length; i++) {
+      let t = arr[i];
+      if (t === type) {
+        // highlight it
+        document.getElementById('audio-' + t).setAttribute('scale', '0 0 0');
+        document.getElementById('sel-audio-' + t).setAttribute('scale', '1 1 1');
+      } else {
+        document.getElementById('audio-' + t).setAttribute('scale', '1 1 1');
+        document.getElementById('sel-audio-' + t).setAttribute('scale', '0 0 0');
+      }
+    }
+  }
+      
+    </script>
+    
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
+    
+
+    
+    <!--     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+   -->
+<!--     <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script> -->
+
+<!--     <script src="/material.js"></script> -->
+<!--     <script type="text/javascript">
+      AFRAME.ASSETS_PATH = "./assets";
+    </script>
+     -->
+    
+    
+  </head>
+  <body>
+    <a-scene stage-env renderer="antialias: true" cursor="rayOrigin: mouse" loading-screen="dotsColor: #14FFEC; backgroundColor: #323232">
+
+      
+      <!--       <a-entity environment="skyType: gradient; skyColor: #000000; horizonColor: #ffffff;
+                             groundTexture: none; ground: spikes; groundColor: #ffffff; groundColor2: #ffffff;
+                             dressing: apparatus; dressingAmount: 10; dressingColor: #000000"></a-entity> -->
+<!--     <a-entity environment="skyType: atmosphere; skyColor: #161c37; lighting: point; lightPosition: -1 6.2 5; groundTexture: squares;"></a-entity> -->
+      
+    <!--<a-scene background="color: #333333" renderer="antialias: true" cursor="rayOrigin: mouse"> -->
+    
+      <a-assets>
+        <img id="rotate-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FRight.png?v=1586132629118" crossorigin="anonymous">
+        <img id="rotate-icon-l" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLeft.png?v=1586132624259" crossorigin="anonymous">
+        
+        <a-asset-item id="jmol-obj" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fnew1.glb?v=1584296164543"></a-asset-item>
+<!--      <a-asset-item id="jmol-obj" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2F1cbs_a.obj?v=1583363035826"></a-asset-item> -->
+        <img id="text1" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FText%201.png?v=1588444516524" crossorigin="anonymous">
+        <img id="text2" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Ftext2.png?v=1588444956317" crossorigin="anonymous">
+        <img id="textframe" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Ftooltip.png?v=1585515163021" crossorigin="anonymous">
+       
+        
+        
+        <img id="logo" src="https://cdn.glitch.global/047b789c-0adf-43c1-9591-c52db8f5e45e/fb7188cb-e0e4-48ae-a567-093a187d6636_logo.png?v=1642077918310" crossorigin="anonymous">
+<!--         <img id="logo" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Flogo.png?v=1588445542808" crossorigin="anonymous"> -->
+ 
+        <img id="frame1" src="https://cdn.glitch.global/047b789c-0adf-43c1-9591-c52db8f5e45e/fram1.png?v=1642077214525 " crossorigin="anonymous">
+<!--         <img id="frame1" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FFrame1Updated.png?v=1619028028403" crossorigin="anonymous"> -->
+        
+<!--         https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FFrame2.png?v=1615405314244 -->
+        <img id="frame2" src="https://cdn.glitch.global/047b789c-0adf-43c1-9591-c52db8f5e45e/USN.png?v=1642142198524" crossorigin="anonymous">
+        <img id="frame3" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FFrame3Updated.png?v=1619027913735" crossorigin="anonymous">
+     
+<!--         https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FFrame4Updated.png?v=1619027917034 -->
+        <img id="frame4" src="https://cdn.glitch.global/047b789c-0adf-43c1-9591-c52db8f5e45e/quiz.png?v=1642142497494" crossorigin="anonymous">
+        <img id="frame5" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FFrame5Updated.png?v=1619027922253" crossorigin="anonymous">
+        
+        <img id="line" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FLine.png?v=1615403533671" crossorigin="anonymous">
+        
+        
+        <img id="tutorialop" src="https://cdn.glitch.global/047b789c-0adf-43c1-9591-c52db8f5e45e/fb7188cb-e0e4-48ae-a567-093a187d6636_TutorialOptions.png?v=1642078739056" crossorigin="anonymous">
+<!--         <img id="tutorialop" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FTutorialOptions.png?v=1615403574920" crossorigin="anonymous"> -->
+        
+        <img id="play-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FPlay.png?v=1615403546542" crossorigin="anonymous">
+        <img id="pause-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FPause.png?v=1586132633986" crossorigin="anonymous">
+        <img id="stop-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FStop.png?v=1615403568564" crossorigin="anonymous">
+        
+        <img id="selected-play-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FSelected%20play.png?v=1615403556583"  crossorigin="anonymous">
+        <img id="selected-pause-icon1" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FSelected%20pause.png?v=1587189564299"  crossorigin="anonymous">
+        <img id="selected-stop-icon" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FStop%20selected.png?v=1615403560841"  crossorigin="anonymous">
+        
+        <img id="start-btn" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fgetstarted.png?v=1587919267473" crossorigin="anonymous">
+        
+<!--         <audio id="intro-audio" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2FIntroAudio%20(mp3cut.net).m4a?v=1615412311577"></audio> -->
+        <audio id="intro-audio" src="https://cdn.glitch.global/047b789c-0adf-43c1-9591-c52db8f5e45e/anurag_voice.m4a?v=1642076934704 "></audio>
+       
+      </a-assets>
+      
+      <a-assets>
+    <img id="lesson2Thumbnail" src="https://cdn.glitch.com/fb7188cb-e0e4-48ae-a567-093a187d6636%2Fmaltose%20(1).png?v=1584726992314" crossorigin="anonymous">
+  </a-assets>
+
+  
+<a-entity
+        light="color: #14ffec; intensity: 0.5"
+        animation="property: position; from: -1 0.4 1; to: 1 0.4 1; loop: true; dir: alternate; dur: 3000; easing: easeInOutSine;"
+      ></a-entity>
+      
+<!--       <a-entity oculus-go-controls></a-entity>
+      <a-entity tracked-controls="controller: 0; idPrefix: OpenVR"></a-entity>
+ -->
+
+<!--       <a-entity
+        position="0 4 -2"
+
+        troika-text="value: Welcome to Learning in VR!; color:#14ffec; fontSize:0.6"
+        troika-text-material="shader: standard; metalness: 0.8; roughness: 0.4;"
+      ></a-entity>
+
+      <a-troika-text
+        position="0 2.2 -2"
+        color="#0d7377"
+        overflow-wrap="normal"
+        value="INTELLEC is a virtual reality education platform that makes it easy to teach and learn in VR. \n 
+               It can be used to enhance education by providing an interactive learning environment. \n 
+               It helps you to effectively learn complex topics by using virtual simulations to show you \n
+               visual representations of hard to understand processes. \n 
+               It enables you to become fully immersed in the environment and subject material, and reduce distractions \n
+               from the outside world, hence, providing a more focused and personal learning experience."
+        material="shader: standard; metalness: 0.4; roughness: 0.4;"
+      ></a-troika-text> -->
+      
+      
+      <a-image id="logop" position="0 4.5 -0.2" rotation="10 0 0" src="#logo" width="3" height="1"></a-image>
+      
+<!--     <!--  <a-image id="t1" position="0 3 0.3" src="#text1" width="4" height="0.5"></a-image> -->
+<!--       <a-image id="t2" position="0 2 0.3" src="#text2" width="5.5" height="1"></a-image> --> -->
+      
+<!--       <a-image id="f1" position="-3.5 3.2 0.027" rotation="0 20 0" src="#frame1" width="1.05" height="1.05"></a-image> -->
+<!--       <a-image id="lin1" position="-2.65 3 0.027" src="#line" width="0.02" height="1"></a-image> -->
+      
+      <a-image id="f2" position="-2 3 -0.2" rotation="0 20 0" src="#frame2" width="1.1" height="0.86"></a-image>
+      <a-image id="lin2" position="-1.07 2.7 0.027" src="#line" width="0.02" height="1"></a-image>
+      
+<!--       <a-image id="f3" position="0 2.8 -0.2" src="#frame3" width="2" height="1"></a-image> -->
+      <a-image id="f1" position="0 2.8 -0.2"  src="#frame1" width="1.05" height="1.05"></a-image>
+      <a-image id="lin3" position="1.08 2.7 0.027" src="#line" width="0.02" height="1"></a-image>
+      
+      <a-image id="f4" position="2.1 2.7 -0.1" rotation="0 -20 0" src="#frame4" width="1.3" height="1.6"></a-image>
+      <a-image id="lin4" position="3 3.1 0.027" src="#line" width="0.03" height="1.1"></a-image>
+      
+<!--       <a-image id="f5" position="3.8 3.2 0.36" rotation="0 -40 0" src="#frame5" width="1.3" height="1.6"></a-image> -->
+      
+      <a-image id="to" position="0 1.8 -0.2" rotation="0 0 0" src="#tutorialop" width="1.1" height="0.7"></a-image>
+      
+      
+      
+      <a-box id="soundbox" color="ffffff" position="0 2 -0.5" opacity="0" scale="0.5 0.5 0.5" sound="src: #intro-audio; volume:6 refDistance: 30; rolloffFactor: 1"></a-box>
+      
+
+     <a-image id="audio-play1" position="0 1.65 -0.1" src="#play-icon" width="0.2" height="0.2" play></a-image> 
+      <a-image id="sel-audio-play1" position="0 1.65 -0.1" src="#selected-play-icon" color="None" width="0.2" height="0.2" scale="0 0 0"></a-image>
+      
+      
+     <a-image id="audio-pause1" position="-0.3 1.65 -0.1" src="#pause-icon" width="0.2" height="0.2" pause></a-image>
+      <a-image id="sel-audio-pause1" position="-0.3 1.65 -0.1" src="#selected-pause-icon1" color="None" width="0.2" height="0.2" scale="0 0 0"></a-image>
+   
+      <a-image id="audio-stop1" position="0.3 1.65 -0.1" src="#stop-icon" width="0.2" height="0.2" stop></a-image> 
+      <a-image id="sel-audio-stop1" position="0.3 1.65 -0.1" src="#selected-stop-icon" color="None" width="0.2" height="0.2" scale="0 0 0"></a-image>
+      
+      
+      <!--  <a-image id="play1" position="0 1.65 -0.1" src="#play-icon" sound="src: #intro-audio; on: click; volume: 4; refDistance: 30; rolloffFactor: 1" width="0.2" height="0.2"></a-image>  -->
+     
+      <!-- <a-entity sound="src: #intro-audio; autoplay: true; volume: 4; refDistance: 30; rolloffFactor: 1" position="0 0 0"> </a-entity> -->
+      
+      
+     <a-image id="start" position="0 1.15 -0.2" src="#start-btn" height="0.5" width="1.1"></a-image>
+    
+      
+      
+      
+<!--       <a-plane width="10" height="10" rotation="-90 0 0" color="#f0f0f0"></a-plane> -->
+<!--      <a-sky color="#ddd"></a-sky> 
+       -->
+<!--       <a-entity camera look-controls orbit-controls="target: 0 0 0; minDistance: 3; maxDistance: 180; initialPosition: 0 1 2"></a-entity> -->
+      
+      <a-entity id="rig" position="0 2 3.0">
+          <a-entity id="camera" camera wasd-controls look-controls position="0 0 0"></a-entity>
+          <a-entity laser-controls="hand: right"></a-entity>
+      </a-entity>
+      
+    </a-scene>
+    <script>
+      window.testToggleAction = function (a) {
+        console.log("clicked GUI param 1 is:", a);
+        console.log('Target and text is: ', a.target, a.target.value);
+        a.preventDefault();
+        a.stopPropagation();
+    }
+    </script>
+  </body>
+</html>
+<!-- MALTOSE SENSOR WITH MALTOSE BOUND -->
